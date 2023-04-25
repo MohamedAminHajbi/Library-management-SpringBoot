@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Equipements catalog</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+	<link rel="icon" type="image/png" th:href="@{/img/mybib.png}">
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
+
+ <!-- NAVBAR -->
+<nav class="navbar navbar-expand py-3 sticky-top navbar-light bg-white">
+    <div class="container-fluid">
+      <a class="navbar-brand" th:href="@{/}">
+        <img class="logo ms-3" th:src="@{/img/mybib.png}" alt="" style="width: 80px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse ms-auto" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/catalogues?keyword=}">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/materiels?keyword=}">Equipements</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/update/editProfile}">Profile</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/aboutUs}">About Us</a>
+          </li>
+        </ul>
+        <form th:action="@{/materiels?keyword=}" class="form-inline d-flex align-items-center" style="height: 30px;left: 100px;
+        height: 30px; width: 500px;">
+          <input type="text" class="form-control mr-sm-2" placeholder="Search" style="height: 40px; left: 100px;" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+		  
+          &nbsp;
+          <input type="submit" value="Search" class="btn btn-outline-primary my-2 my-sm-0" style="margin-left: 10px;" />
+          &nbsp;
+          <input type="button" class="btn btn-outline-primary my-2 my-sm-0" style="margin-left: 10px;" value="See all the list" id="btnClear" onclick="clearSearch()" />
+       </form>
+	   
+      <script type="text/javascript">
+          function clearSearch() {
+              window.location = "[[@{/materiels?keyword=}]]";
+          }
+      </script>
+        <form th:action="@{/logout}" method="post">
+          <button class="btn btn-primary ms-lg-3" type="submit">Logout</button>
+        </form>
+      </div>
+    </div>
+  </nav><!-- //NAVBAR -->
+  <div class ="container pt-5">
+    <div class = "row">
+        <h1> Equipments catalog </h1>
+    </div>
+    <div class = "row pb-3" style="justify-content: space-between;">
+   <div class = "col-lg-3">
+				<a th:href = "@{/materiels/new}" class = "btn btn-primary">Add equipement</a>
+				
+			</div>
+
+			<div class = "col-lg-3">
+				<a class="btn btn-primary" th:href = "@{/emprunt_mat}">Borrow Equipment</a>
+			</div> 
+			</div>
+    <div class = "row">
+  
+            <div class="row">
+                <div class="col-sm-4" th:each = "materiel : ${materiel}">
+                  <div class="card mt-4" style="width: 18rem;">
+                    <img class="" th:src="${materiel.img}" alt="Card image cap" style="height:140px;object-fit:contain;">
+                    <div class="card-body">
+                      <h5 class="card-title" th:text = "${materiel.nom_mat}">Card title</h5>
+                      <div th:text = "${materiel.id}"></div>
+                      <div><a th:href = "@{/materiels/edit/{id}(id=${materiel.id})}"
+                     class = "btn btn-primary">Update</a>
+                    
+                    <a th:href = "@{/materiels/{id}(id=${materiel.id})}"
+                     class = "btn btn-danger">Delete</a></div>
+                    </div>
+                  </div>	
+                </div>	
+                </div>
+                </div>
+                </div>
+  
+   
+<footer class="mt-5">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-4">
+                        <img class="logo" src="img/logo-white.svg" alt="">
+                    </div>
+                    <div class="col-lg-2">
+                        <h5 class="text-white">Brand</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2">
+                        <h5 class="text-white">More</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">FAQ's</a></li>
+                            <li><a href="#">Privacy & Policy</a></li>
+                            <li><a href="#">Warranty</a></li>
+                            <li><a href="#">Shipment</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="text-white">Contact</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Address: 2715 Ash Dr. Charguia 2, Ariana 83475</a></li>
+                            <li><a href="#">Email: myBib@enicar.com</a></li>
+                            <li><a href="#">Phone: (216) 89 123 456</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" style="width: 100%;">
+                        <p class="mb-0" style="color: white; font-weight: 300;">© 2023 copyright all right reserved | Designed with Mohamed Amin Hajbi & Mohamed Hamdi</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

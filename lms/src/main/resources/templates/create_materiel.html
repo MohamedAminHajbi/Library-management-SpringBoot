@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add an equipement</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/boxicons.min.css">
+    <link rel="icon" type="image/png" th:href="@{/img/mybib.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand py-3 sticky-top navbar-light bg-white">
+    <div class="container-fluid">
+      <a class="navbar-brand" th:href="@{/}">
+        <img class="logo ms-3" th:src="@{/img/mybib.png}" alt="" style="width: 80px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse ms-auto" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/catalogues?keyword=}">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/materiels?keyword=}">Equipements</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/update/editProfile}">Profile</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/aboutUs}">About Us</a>
+          </li>
+        </ul>
+        
+        <form th:action="@{/logout}" method="post">
+          <button class="btn btn-primary ms-lg-3" type="submit">Logout</button>
+        </form>
+      </div>
+    </div>
+  </nav><!-- //NAVBAR -->
+
+	<div class = "container">
+		<div class = "row">
+			
+			<div class="container my-5 p-5" >
+				<h4 class="text-center">Add Equipment</h4>
+				<form class="col-md-4 offset-md-4" th:action="@{/materiels/{id} (id=${materiel.id})}" th:object = "${materiel}" method="post">
+				  
+				<div class="mb-3">
+				  <label for="nom_mat" class="form-label">Name and type</label>
+				  <input type="text" class="form-control" name="nom_mat" th:field = "*{nom_mat}" required autofocus>
+				</div>
+                <div class="mb-3">
+                    <label for="nom_mat" class="form-label">Image</label>
+                    <input type="text" class="form-control" name="nom_mat" th:field = "*{img}" required autofocus>
+                  </div>
+				<center style="padding-top: 15px;"><button type="submit" class="btn btn-primary">Add</button></center>
+			  </form>
+			  </div>
+		</div>
+	</div>
+	<footer class="mt-5">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-4">
+                        <img class="logo" src="img/logo-white.svg" alt="">
+                    </div>
+                    <div class="col-lg-2">
+                        <h5 class="text-white">Brand</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2">
+                        <h5 class="text-white">More</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">FAQ's</a></li>
+                            <li><a href="#">Privacy & Policy</a></li>
+                            <li><a href="#">Warranty</a></li>
+                            <li><a href="#">Shipment</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="text-white">Contact</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Address: 2715 Ash Dr. Charguia 2, Ariana 83475</a></li>
+                            <li><a href="#">Email: myBib@enicar.com</a></li>
+                            <li><a href="#">Phone: (216) 89 123 456</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" style="width: 100%;">
+                        <p class="mb-0" style="color: white; font-weight: 300;">© 2023 copyright all right reserved | Designed with Mohamed Amin Hajbi & Mohamed Hamdi</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
