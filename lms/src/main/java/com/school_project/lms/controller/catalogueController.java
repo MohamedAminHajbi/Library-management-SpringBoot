@@ -33,7 +33,7 @@ public class catalogueController {
 	@PostMapping("/catalogues")
 	public String saveCatalogue(@ModelAttribute ("catalogue")  Catalogue catalogue ) {
 		catalogueservice.saveCatalogue(catalogue);
-		return "redirect:/catalogues";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/catalogues/edit/{id}")
